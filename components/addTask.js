@@ -25,7 +25,10 @@ export const addTask = (event) => {
   calendar.value = "";
   // Storage
   const taskList = JSON.parse(localStorage.getItem("tasks")) || [];
-  const taskObj = { value, dateFormat}
+
+  const complete = false;
+
+  const taskObj = { value, dateFormat, complete, id: crypto.randomUUID()}
 
   list.innerHTML = ""
   taskList.push(taskObj)
@@ -36,12 +39,20 @@ displayTask()
 }
 
 
-export const createTask = ({value,dateFormat}) => {
+export const createTask = ({value,dateFormat, complete, id}) => {
 
   const task = document.createElement('li');
   const taskContent = document.createElement('div');
   const titleTask = document.createElement('span');
   const dateElement = document.createElement("span");
+
+  const check = checkComplete(id)
+
+  if(complete){
+    check.classList.toggle('fas');
+    check.classList.toggle('completeIcon');
+    check.classList.toggle('far');
+  }
 
   task.classList.add('card');
   titleTask.classList.add('task');
@@ -49,7 +60,7 @@ export const createTask = ({value,dateFormat}) => {
   titleTask.innerText = value;
   dateElement.innerHTML = dateFormat
   
-  taskContent.appendChild(checkComplete());
+  taskContent.appendChild(check);
   taskContent.appendChild(titleTask);
   task.appendChild(taskContent);
   task.appendChild(dateElement)

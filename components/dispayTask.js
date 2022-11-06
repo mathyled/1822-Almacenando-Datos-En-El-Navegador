@@ -8,8 +8,6 @@ export const displayTask = () => {
     const taskList = JSON.parse(localStorage.getItem("tasks")) || [];
     const dates  = uniqueDates(taskList)
 
-         console.log(orderDate(dates));
-         
        dates.forEach(date => {
         const dateMoment = moment(date, "DD/MM/YYYY")
         list.appendChild(dateElement(date))
