@@ -32,7 +32,7 @@ export const addTask = (event) => {
   localStorage.setItem("tasks", JSON.stringify(taskList))
 
 
-readTasks()  
+displayTask()  
 }
 
 
