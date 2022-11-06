@@ -34,8 +34,7 @@ export const addTask = (event) => {
   taskList.push(taskObj)
   localStorage.setItem("tasks", JSON.stringify(taskList))
 
-
-displayTask()  
+ displayTask()  
 }
 
 
@@ -64,7 +63,7 @@ export const createTask = ({value,dateFormat, complete, id}) => {
   taskContent.appendChild(titleTask);
   task.appendChild(taskContent);
   task.appendChild(dateElement)
-  task.appendChild(deleteIcon());
+  task.appendChild(deleteIcon(id));
   return task
 };
 
